@@ -23,18 +23,20 @@ export default function SignupPage() {
         />
       </Link>
 
-      <div className="my-5 flex flex-col gap-1 items-center">
-        <h1 className="text-4xl font-bold">Sign up</h1>
-        <p className="text-muted-foreground">Get in sync with people</p>
-      </div>
+      <div className="flex flex-col justify-evenly mx-auto">
+        <div className="my-5 flex flex-col gap-1 items-center">
+          <h1 className="text-4xl font-bold">Sign up</h1>
+          <p className="text-muted-foreground">Get in sync with people</p>
+        </div>
 
-      <SignupForm />
+        <SignupForm />
 
-      <div className="flex gap-1 justify-center my-5">
-        <p>Already have an account?</p>
-        <Link href="/login" className="text-primary">
-          Login
-        </Link>
+        <div className="flex gap-1 justify-center my-5">
+          <p>Already have an account?</p>
+          <Link href="/login" className="text-primary">
+            Login
+          </Link>
+        </div>
       </div>
     </div>
   );
