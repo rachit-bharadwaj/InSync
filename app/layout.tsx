@@ -9,7 +9,10 @@ import "./globals.css";
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "InSync",
+  title: {
+    default: "InSync",
+    template: "%s | InSync",
+  },
   description:
     "A social media platform built with Next.js for people to connect.",
 };
