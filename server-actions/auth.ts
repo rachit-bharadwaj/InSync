@@ -18,18 +18,9 @@ import { LoginValues, SignupValues } from "@/types";
 
 export async function login(
   credentials: LoginValues
-): Promise<{ error: string }> {
+): Promise<{ error?: string, redirectTo?: string }> {
   try {
     const { password, username } = loginValidation.parse(credentials);
-
-    const passwordHash = await hash(password, {
-      memoryCost: 19456,
-      timeCost: 2,
-      outputLen: 32,
-      parallelism: 1,
-    });
-
-    const userId = generateIdFromEntropySize(10);
 
     const existingUser = await prisma.user.findFirst({
       where: {
@@ -61,7 +52,7 @@ export async function login(
       sessionCookie.attributes
     );
 
-    return redirect("/");
+    return { redirectTo: "/" };
   } catch (error) {
     if (isRedirectError(error)) throw new Error(error.message);
     console.log(error);
@@ -71,7 +62,7 @@ export async function login(
 
 export async function signup(
   credentials: SignupValues
-): Promise<{ error: string }> {
+): Promise<{ error?: string, redirectTo?: string }> {
   try {
     const { name, email, password, username } =
       signupValidation.parse(credentials);
@@ -126,7 +117,7 @@ export async function signup(
       sessionCookie.attributes
     );
 
-    return redirect("/");
+    return { redirectTo: "/" };
   } catch (error) {
     if (isRedirectError(error)) throw new Error(error.message);
     console.log(error);
@@ -134,7 +125,7 @@ export async function signup(
   }
 }
 
-export async function logout() {
+export async function logout(): Promise<{ redirectTo: string }> {
   const { session } = await validateRequest();
 
   if (!session) throw new Error("Unauthorized");
@@ -149,5 +140,5 @@ export async function logout() {
     sessionCookie.attributes
   );
 
-  return redirect("/login");
+  return { redirectTo: "/login" };
 }
