@@ -3,6 +3,7 @@ import { z } from "zod";
 const requiredString = z.string().trim().min(1, "Required");
 
 export const signupValidation = z.object({
+  name: requiredString,
   email: requiredString.email("Invalid email"),
   username: requiredString.regex(
     // allowed alphanumeric characters, underscore, dot and hyphen but the username should only begin with a letter, number or an underscore
