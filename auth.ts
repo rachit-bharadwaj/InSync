@@ -5,6 +5,7 @@ import { cache } from "react";
 import { User } from "lucia";
 import { Session } from "lucia";
 import { cookies } from "next/headers";
+import { DatabaseUserAttributes } from "./interfaces";
 
 const adapter = new PrismaAdapter(prisma.session, prisma.user);
 
