@@ -1,6 +1,23 @@
+import { ComponentProps } from "react";
 import { z } from "zod";
 import { loginValidation, signupValidation } from "@/lib/validations";
 
-declare type SignupValues = z.infer<typeof signupValidation>;
+declare global {
+  type SignupValues = z.infer<typeof signupValidation>;
 
-declare type LoginValues = z.infer<typeof loginValidation>;
+  type LoginValues = z.infer<typeof loginValidation>;
+
+  type UserButtonProps = {
+    className?: string;
+  };
+
+  type AvatarProps = {
+    avatarUrl: string | null | undefined;
+    size?: number;
+    className?: string;
+  };
+
+  type NavbarProps = {
+    className?: string;
+  };
+}

@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 // next
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 
 import "./globals.css";
 
@@ -24,7 +25,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={outfit.className}>{children}</body>
+      <body className={outfit.className}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

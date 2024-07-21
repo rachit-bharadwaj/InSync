@@ -14,11 +14,10 @@ import { generateIdFromEntropySize } from "lucia";
 // locals
 import prisma from "@/lib/prisma";
 import { loginValidation, signupValidation } from "@/lib/validations";
-import { LoginValues, SignupValues } from "@/types";
 
 export async function login(
   credentials: LoginValues
-): Promise<{ error?: string, redirectTo?: string }> {
+): Promise<{ error?: string; redirectTo?: string }> {
   try {
     const { password, username } = loginValidation.parse(credentials);
 
@@ -62,7 +61,7 @@ export async function login(
 
 export async function signup(
   credentials: SignupValues
-): Promise<{ error?: string, redirectTo?: string }> {
+): Promise<{ error?: string; redirectTo?: string }> {
   try {
     const { name, email, password, username } =
       signupValidation.parse(credentials);

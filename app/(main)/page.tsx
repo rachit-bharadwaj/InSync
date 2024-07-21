@@ -1,3 +1,5 @@
+import { Navbar } from "@/components/shared";
+
 export default function Home() {
-  return <main>Home</main>;
+  return <main></main>;
 }
