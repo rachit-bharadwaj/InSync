@@ -20,3 +20,8 @@ export const loginValidation = z.object({
   username: requiredString,
   password: requiredString,
 });
+
+export const postValidation = z.object({
+  title: requiredString,
+  content: requiredString,
+});
