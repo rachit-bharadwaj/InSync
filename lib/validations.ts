@@ -22,6 +22,5 @@ export const loginValidation = z.object({
 });
 
 export const postValidation = z.object({
-  title: requiredString,
   content: requiredString,
 });

@@ -15,8 +15,8 @@ export default function Navbar({ className }: NavbarProps) {
         <Button
           key={item.name}
           variant="ghost"
-          className={cn("flex items-center justify-start gap-3", {
-            "bg-primary text-white hover:bg-primary/90 hover:text-white":
+          className={cn("flex items-center justify-start gap-3 rounded-xl", {
+            "lg:bg-primary lg:text-white text-primary lg:hover:bg-primary/90 hover:bg-primary/30 hover:text-primary lg:hover:text-white/70":
               path === item.href,
           })}
           title={item.name}

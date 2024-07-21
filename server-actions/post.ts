@@ -20,8 +20,8 @@ export async function createPost(input: string): Promise<{ error?: string }> {
         userId: user.id,
       },
     });
-  } catch (error) {
-    return { error: "Something went wrong" };
+  } catch (error: any) {
+    return error.message;
   }
 
   return { error: "Not implemented" };

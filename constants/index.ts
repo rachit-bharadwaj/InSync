@@ -1,3 +1,6 @@
+import { Prisma } from "@prisma/client";
+
+// icons
 import { Bell, Bookmark, Home, Mail } from "lucide-react";
 
 export const navItems = [
@@ -24,3 +27,13 @@ export const navItems = [
     href: "/bookmarks",
   },
 ];
+
+export const PostDataInclude = {
+  user: {
+    select: {
+      name: true,
+      avatarUrl: true,
+      username: true,
+    },
+  },
+} satisfies Prisma.PostInclude;
