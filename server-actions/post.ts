@@ -4,22 +4,19 @@ import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 import { postValidation } from "@/lib/validations";
 
-export async function createPost(
-  title: string,
-  content: string
-): Promise<{ error?: string }> {
+export async function createPost(input: string): Promise<{ error?: string }> {
   const { user } = await validateRequest();
 
   if (!user) return { error: "Unauthorized" };
 
   try {
-    const { content: validatedContent, title: validatedTitle } =
-      postValidation.parse({ content, title });
+    const { content } = postValidation.parse({
+      content: input,
+    });
 
     await prisma.post.create({
       data: {
-        title: validatedTitle,
-        content: validatedContent,
+        content,
         userId: user.id,
       },
     });
