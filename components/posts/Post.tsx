@@ -19,7 +19,7 @@ export default function Post({ post }: PostProps) {
   };
 
   return (
-    <article className="bg-secondary/50 p-5 rounded-2xl">
+    <article className="bg-secondary p-5 rounded-2xl">
       <div className="flex gap-2 items-center">
         <UserAvatar avatarUrl={post.user.avatarUrl} size={40} />
 
@@ -30,7 +30,7 @@ export default function Post({ post }: PostProps) {
           </p>
         </div>
       </div>
-      <p className="mt-5">{post?.content}</p>
+      <p className="mt-5 whitespace-pre-line break-words">{post?.content}</p>
     </article>
   );
 }

@@ -28,12 +28,15 @@ export const navItems = [
   },
 ];
 
+export const UserDataSelect = {
+  id: true,
+  name: true,
+  avatarUrl: true,
+  username: true,
+} satisfies Prisma.UserSelect;
+
 export const PostDataInclude = {
   user: {
-    select: {
-      name: true,
-      avatarUrl: true,
-      username: true,
-    },
+    select: UserDataSelect,
   },
 } satisfies Prisma.PostInclude;

@@ -1,1 +1,3 @@
-export { default as Sidebar } from "./Sidebar";
+export { default as TrendingTopics } from "./TrendingTopics";
+export { default as WhoToFollow } from "./WhoToFollow";
+export { default as ForYouFeed } from "./ForYouFeed";

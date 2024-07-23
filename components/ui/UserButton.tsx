@@ -23,10 +23,12 @@ import { logout } from "@/server-actions/auth";
 import { useTheme } from "next-themes";
 import { Monitor, Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function UserButton({ className }: UserButtonProps) {
   const { user } = useSession();
   const { setTheme, theme } = useTheme();
+  const queryClient = useQueryClient();
 
   return (
     <DropdownMenu>
@@ -83,7 +85,10 @@ export default function UserButton({ className }: UserButtonProps) {
         <DropdownMenuItem asChild className="p-0">
           <button
             className="w-full p-2 hover:bg-muted cursor-pointer"
-            onClick={() => logout()}
+            onClick={() => {
+              queryClient.clear();
+              logout();
+            }}
           >
             Log out
           </button>

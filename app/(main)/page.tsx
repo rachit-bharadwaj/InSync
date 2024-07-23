@@ -2,8 +2,11 @@
 import prisma from "@/lib/prisma";
 import { PostDataInclude } from "@/constants";
 
+import { Sidebar } from "@/containers/home";
+
 // components
 import { Editor, Post } from "@/components/posts";
+import { ForYouFeed, TrendingTopics, WhoToFollow } from "@/components/home";
 
 export default async function Home() {
   const posts = await prisma.post.findMany({
@@ -12,14 +15,19 @@ export default async function Home() {
   });
 
   return (
-    <main className="w-full">
-      <Editor />
+    <main className="w-full flex gap-5">
+      <div className="w-full flex flex-col gap-10">
+        <Editor />
 
-      <div className="flex flex-col gap-5 my-10">
-        {posts.map((post) => (
-          <Post key={post.id} post={post} />
-        ))}
-      </div>
+        
+          <ForYouFeed />
+        </div>
+     
+
+      <Sidebar>
+        <WhoToFollow />
+        <TrendingTopics />
+      </Sidebar>
     </main>
   );
 }

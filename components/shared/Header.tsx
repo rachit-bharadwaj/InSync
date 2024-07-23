@@ -6,7 +6,7 @@ import { SearchField, UserButton } from "@/components/ui";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-secondary/50">
+    <header className="sticky top-0 z-50 bg-secondary">
       <div className="max-w-7xl flex p-5 gap-10 justify-evenly mx-auto items-center">
         <Link href="/">
           <Image
