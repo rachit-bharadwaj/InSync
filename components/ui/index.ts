@@ -3,3 +3,4 @@ export { default as LoadingButton } from "./LoadingButton";
 export { default as UserButton } from "./UserButton";
 export { default as UserAvatar } from "./UserAvatar";
 export { default as SearchField } from "./SearchField";
+export { default as DeletePostDialog } from "./DeletePostDialog";

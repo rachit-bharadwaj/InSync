@@ -28,4 +28,9 @@ declare global {
   type PostProps = {
     post: PostData;
   };
+
+  type PostsPage = {
+    posts: PostData[];
+    nextCursor: string | null;
+  };
 }

@@ -4,13 +4,16 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import { createPost } from "@/server-actions/post";
-import { UserAvatar } from "../ui";
+import { LoadingButton, UserAvatar } from "../ui";
 import { useSession } from "@/hooks";
+import { useSubmitPostMutation } from "@/hooks/postMutation";
 import { Button } from "../ui/button";
 
 import "./style.css";
 
 export default function Editor() {
+  const mutation = useSubmitPostMutation();
+
   const { user } = useSession();
 
   const editor = useEditor({
@@ -30,10 +33,12 @@ export default function Editor() {
       blockSeparator: "\n",
     }) || "";
 
-  const handleSubmit = async () => {
-    await createPost(input);
-
-    editor?.commands.clearContent();
+  const handleSubmit = () => {
+    mutation.mutate(input, {
+      onSuccess: () => {
+        editor?.commands.clearContent();
+      },
+    });
   };
 
   return (
@@ -50,7 +55,13 @@ export default function Editor() {
         />
       </div>
       <div className="flex justify-end">
-        <Button onClick={handleSubmit}>Post</Button>
+        <LoadingButton
+          loading={mutation.isPending}
+          disabled={!input.trim()}
+          onClick={handleSubmit}
+        >
+          Post
+        </LoadingButton>
       </div>
     </div>
   );

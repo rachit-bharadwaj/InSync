@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 
 import "./globals.css";
 import { ReactQueryProvider } from "@/contexts";
+import { Toaster } from "@/components/ui/sonner";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
         <ReactQueryProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
+            <Toaster />
           </ThemeProvider>
         </ReactQueryProvider>
       </body>
